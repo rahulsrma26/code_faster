@@ -105,10 +105,35 @@ test_1 PASSED
 ## Installing
 
 ```sh
-pip install https://github.com/rahulsrma26/code_faster
+pip install git+https://github.com/rahulsrma26/code_faster
 ```
 
 [](#setup)
 ## Setting up with VSCode
 
+You can set keyboard shortcuts to any editor basically. There are plenty of extensions in VSCode that can do that but for demonstration we will be using [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
 
+For code-runner, edit `settings.json` file in `.vscode` folder.
+```json
+{
+    "code-runner.fileDirectoryAsCwd": true,
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.executorMap": {
+        "cpp": "crun $fileName",
+        "java": "crun $fileName",
+        "python": "crun $fileName"
+    }
+}
+```
+
+Now to run a file just open it and press
+<kbd>control</kbd>+<kbd>option</kbd>+<kbd>n</kbd> (on mac)
+or <kbd>control</kbd>+<kbd>alt</kbd>+<kbd>n</kbd> (on pc).
+
+Note: If you are using `conda` environments and if it's not added to the path environments (or bash). Then `crun` may be unaccessible in the terminal by default. So, you either need to activate it in the terminal, or you need to update the shell args.
+
+```json
+"terminal.integrated.shellArgs.windows": ["/K", "<conda-install-path>/Scripts/activate && conda activate <your-env>"]
+```
+For linux you can change `terminal.integrated.shellArgs.linux` and for mac change `terminal.integrated.shellArgs.osx`

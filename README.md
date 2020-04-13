@@ -49,6 +49,7 @@ This package installs two commands:
     ```
     This will create a folder for binaries in the file's directory with the output of sample tests. It will also generates the test report.
 
+---
 
 [](#example)
 ## Example
@@ -63,18 +64,20 @@ main.cpp created
 ```
 
 Now we will try to run it with out sample generated code.
-```sh
+
+<pre>
 >crun CF1-A\main.cpp
 g++  -o CF1-A\bin\main.exe CF1-A\main.cpp
 ========================================
-test_1 FAILED
+test_1 <span style="color:red">FAILED</span>
 ---------------------------------------- [output]
 6
 ---------------------------------------- [answer]
 4
 ========================================
 :( 0/1 passed.
-```
+</pre>
+
 
 Now fix the main.cpp file to solve the problem.
 ```cpp
@@ -92,21 +95,26 @@ int main() {
 }
 ```
 
-```sh
+<pre>
 >crun CF1-A\main.cpp
 g++  -o CF1-A\bin\main.exe CF1-A\main.cpp
 ========================================
-test_1 PASSED
+test_1 <span style="color:green">PASSED</span>
 ========================================
 :) 1/1 passed.
-```
+</pre>
+
+---
 
 [](#installing)
 ## Installing
 
+You can directly install from the repo.
 ```sh
 pip install git+https://github.com/rahulsrma26/code_faster
 ```
+
+---
 
 [](#setup)
 ## Setting up with VSCode

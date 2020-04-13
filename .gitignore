@@ -1,0 +1,10 @@
+.DS_Store
+.pytest_cache
+.vscode
+__pycache__/
+**/bin/*
+**/*.pyc
+tmp/
+build/
+code_faster.egg-info/
+dist/

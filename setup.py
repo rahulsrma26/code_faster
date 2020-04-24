@@ -22,7 +22,7 @@ def get_install_requirements():
 
 setup(
     # version=version['__version__'],
-    version='0.1.1',
+    version='0.1.2',
     # package_data={
     #     'code_faster': ['sample/**/*'],
     # },

@@ -10,6 +10,6 @@ global-exclude *.pyc
 # added by check_manifest.py
 include code_faster
 include pytest.ini
-recursive-include code_faster *.cpp
-recursive-include code_faster *.java
-recursive-include code_faster *.py
+recursive-include src *.cpp
+recursive-include src *.java
+recursive-include src *.py

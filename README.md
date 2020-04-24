@@ -108,7 +108,12 @@ test_1 PASSED
 [](#installing)
 ## Installing
 
-You can install directly from the repository using pip.
+You can install from [pypi](https://pypi.org/project/code-faster/).
+```sh
+pip install code-faster -U
+```
+
+Or, you can install directly from the repository using pip.
 ```sh
 pip install git+https://github.com/rahulsrma26/code_faster
 ```

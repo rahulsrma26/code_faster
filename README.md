@@ -65,19 +65,18 @@ main.cpp created
 
 Now we will try to run it with out sample generated code.
 
-<pre>
->crun CF1-A\main.cpp
+```sh
+> crun CF1-A\main.cpp
 g++  -o CF1-A\bin\main.exe CF1-A\main.cpp
 ========================================
-test_1 <span style="color:red">FAILED</span>
+test_1 FAILED
 ---------------------------------------- [output]
 6
 ---------------------------------------- [answer]
 4
 ========================================
 :( 0/1 passed.
-</pre>
-
+```
 
 Now fix the main.cpp file to solve the problem.
 ```cpp
@@ -95,21 +94,21 @@ int main() {
 }
 ```
 
-<pre>
->crun CF1-A\main.cpp
+```sh
+> crun CF1-A\main.cpp
 g++  -o CF1-A\bin\main.exe CF1-A\main.cpp
 ========================================
-test_1 <span style="color:green">PASSED</span>
+test_1 PASSED
 ========================================
 :) 1/1 passed.
-</pre>
+```
 
 ---
 
 [](#installing)
 ## Installing
 
-You can directly install from the repo.
+You can install directly from the repository using pip.
 ```sh
 pip install git+https://github.com/rahulsrma26/code_faster
 ```

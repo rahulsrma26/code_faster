@@ -1,0 +1,15 @@
+include LICENSE
+include requirements.txt
+include tox.ini
+graft artwork
+graft docs
+prune docs/_build
+graft examples
+graft tests
+global-exclude *.pyc
+# added by check_manifest.py
+include code_faster
+include pytest.ini
+recursive-include code_faster *.cpp
+recursive-include code_faster *.java
+recursive-include code_faster *.py

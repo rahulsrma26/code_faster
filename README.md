@@ -22,13 +22,15 @@ This package installs two commands:
 
     This will fetches the code from given url.
     ```sh
-    cfetch <code-url> [language]
+    cfetch <code-url> [language|sample-dir]
     ```
     Where language can be one of:
 
     * cpp (default)
     * java
     * py
+
+    If sample-dir is provided instead of language then it'll copy the contents of your sample dir into the created one. Using this you can use your own template for any language whatsoever. However, runner will still work only on supported languages.
 
     example:
     ```sh

@@ -9,7 +9,7 @@ from .utils import Extension
 
 def main():
     if len(sys.argv) not in [2, 3]:
-        print('usage {} <code-force-url> [language]'.format(sys.argv[0]))
+        print('usage {} <code-force-url> [language or sample-dir]'.format(sys.argv[0]))
         print('languages: [cpp(default) | java | py]')
         return
 
@@ -32,7 +32,12 @@ def main():
         _create_files(dir_name, idx, inp, out)
 
     # copying the content of sample dir
-    sample_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'sample', language)
+    if language in ['cpp', 'java', 'py']:
+        base_dir = os.path.dirname(os.path.realpath(__file__))
+        sample_dir = os.path.join(base_dir, 'sample', language)
+    else:
+        sample_dir = language
+
     if not os.path.isdir(sample_dir):
         print(sample_dir, 'not found')
         return

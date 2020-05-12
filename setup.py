@@ -1,4 +1,3 @@
-# https://medium.com/@manivannan_data/create-python-package-to-your-python-code-28a1bde4ec51
 from __future__ import absolute_import, division, print_function
 
 import os
@@ -22,7 +21,7 @@ def get_install_requirements():
 
 setup(
     # version=version['__version__'],
-    version='0.2.0',
+    version='0.2.1',
     # package_data={
     #     'code_faster': ['sample/**/*'],
     # },

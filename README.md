@@ -65,7 +65,7 @@ test_1 created
 main.cpp created
 ```
 
-Now we will try to run it with out sample generated code.
+Now we will try to run it with our sample generated code.
 
 ```sh
 > crun CF1-A\main.cpp

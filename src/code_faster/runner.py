@@ -30,6 +30,7 @@ def _run_tests(runner):
     test_files.sort(key=os.path.getmtime)
     tests = [Extension.name(f) for f in test_files]
     if not tests:
+        print('No test found. Try to make "test.input" and "test.output" files in the same folder as code')
         return
 
     print(Const.D_LINE)

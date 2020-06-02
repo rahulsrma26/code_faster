@@ -12,12 +12,12 @@ from .utils import Extension, Const
 
 
 def main():
-    if len(sys.argv) not in [2, 3]:
+    if len(sys.argv) < 2:
         print('usage {} <filename> [args]'.format(sys.argv[0]))
         return
 
     filepath = sys.argv[1]
-    args = '' if len(sys.argv) == 2 else sys.argv[2]
+    args = '' if len(sys.argv) == 2 else ' '.join(sys.argv[2:])
     runner = rf.factory.get(filepath, Extension.BIN, args)
     if not runner.compile():
         return

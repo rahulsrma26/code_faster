@@ -26,19 +26,23 @@ def main():
 
 
 def _run_tests(runner):
-    test_files = glob(os.path.join(runner.src_dir, '*' + Extension.INPUT))
+    test_files = []
+    for ext in Extension.INPUTS:
+        test_files.extend(glob(os.path.join(runner.src_dir, '*' + ext)))
     test_files.sort(key=os.path.getmtime)
-    tests = [Extension.name(f) for f in test_files]
+    tests = [(f, Extension.name_from_input(f)) for f in test_files]
     if not tests:
-        print('No test found. Try to make "test.input" and "test.output" files in the same folder as code')
+        print(
+            f'No test found. Try to make "test{Extension.INPUT[0]}"'
+            f' and "test{Extension.OUTPUT[0]}" files in the same folder as code')
         return
 
     print(Const.D_LINE)
     passed = 0
-    for test in tests:
-        in_file = os.path.join(runner.src_dir, test + Extension.INPUT)
-        gt_file = os.path.join(runner.src_dir, test + Extension.OUTPUT)
-        out_file = os.path.join(runner.bin_dir, test + Extension.OUTPUT)
+    for in_file, test in tests:
+        ext = Extension.get_output_ext(in_file)
+        gt_file = os.path.join(runner.src_dir, test + ext)
+        out_file = os.path.join(runner.bin_dir, test + ext)
 
         if os.path.isfile(out_file):
             os.remove(out_file)

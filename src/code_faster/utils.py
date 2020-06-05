@@ -8,18 +8,20 @@ class Const:
 
 
 class Extension:
-    INPUT = '.input'
-    OUTPUT = '.output'
+    INPUTS = ['.i.txt', '.i', '.input']
+    OUTPUTS = ['.o.txt', '.o', '.output']
     BIN = 'bin'
 
     @staticmethod
-    def output(input_file):
-        return input_file[:-len(Extension.INPUT)] + Extension.OUTPUT
+    def get_output_ext(path):
+        for ext, out in zip(Extension.INPUTS, Extension.OUTPUTS):
+            if path.endswith(ext):
+                return out
+        return None
 
     @staticmethod
-    def name(path):
-        if path.endswith(Extension.INPUT):
-            return os.path.basename(path)[:-len(Extension.INPUT)]
-        if path.endswith(Extension.OUTPUT):
-            return os.path.basename(path)[:-len(Extension.OUTPUT)]
+    def name_from_input(path):
+        for ext in Extension.INPUTS:
+            if path.endswith(ext):
+                return os.path.basename(path)[:-len(ext)]
         return None

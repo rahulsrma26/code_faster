@@ -52,6 +52,14 @@ This package installs two commands:
     ```
     This will create a folder for binaries in the file's directory with the output of sample tests. It will also generates the test report.
 
+    You can manually create more test files.
+    Supported formats are:
+    | Input  | Output  |
+    |--------|---------|
+    | .i.txt | .o.txt  |
+    | .i     | .o      |
+    | .input | .output |
+
 ---
 
 [](#example)

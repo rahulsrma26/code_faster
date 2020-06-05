@@ -73,10 +73,10 @@ def main():
 
 
 def _create_files(base_dir, idx, inp, out):
-    i_file = os.path.join(base_dir, f'test_{idx}{Extension.INPUT}')
+    i_file = os.path.join(base_dir, f'test_{idx}{Extension.INPUTS[0]}')
     with open(i_file, 'w') as f:
         f.write(inp)
-    o_file = os.path.join(base_dir, f'test_{idx}{Extension.OUTPUT}')
+    o_file = os.path.join(base_dir, f'test_{idx}{Extension.OUTPUTS[0]}')
     with open(o_file, 'w') as f:
         f.write(out)
     print(f'test_{idx} created')

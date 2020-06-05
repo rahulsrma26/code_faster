@@ -6,7 +6,9 @@ from .base_fetcher import BaseFetcher
 
 
 def clean_text(tag):
-    return tag.find("pre").prettify()[5:-6].replace("<br/>", "\n")
+    text = tag.find("pre").prettify()[5:-6].replace("<br/>", "\n").replace(u'\xa0', ' ')
+    # print('text', repr(text), repr(tag.find("pre").get_text()))
+    return text
 
 
 class CodeForceFetcher(BaseFetcher):

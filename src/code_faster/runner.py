@@ -52,8 +52,8 @@ def _run_tests(runner):
 
 
 def _check(test, in_file, out_file, gt_file):
-    in_text = _read_txt(in_file).strip()
-    out_text = _read_txt(out_file).strip()
+    in_text = _read_txt(in_file)
+    out_text = _read_txt(out_file)
     if out_text is None:
         print(f'{test} {Fore.RED}RUNTIME ERROR: no output found{Style.RESET_ALL}')
         return False
@@ -106,7 +106,7 @@ def _read_txt(filepath):
     if not os.path.isfile(filepath):
         return None
     with open(filepath, 'r') as f:
-        return '\n'.join([l.strip() for l in f])
+        return '\n'.join([l.rstrip() for l in f])
 
 
 if __name__ == '__main__':

@@ -1,21 +1,38 @@
+"""
+cfetch [code-fetch]
+===================
+cfetch command fetches the code from a url.
+"""
 import os
 import sys
 import shutil
+from argparse import ArgumentParser, RawTextHelpFormatter
 from datetime import datetime
 
 from .fetchers import fetcher_factory as ff
 from .utils import Extension
 
 
-def main():
-    if len(sys.argv) not in [2, 3]:
-        print('usage {} <code-force-url> [language or sample-dir]'.format(sys.argv[0]))
-        print('languages: [cpp(default) | java | py]')
-        return
+def _get_args():
+    parser = ArgumentParser(
+        prog='cfetch', description=__doc__, formatter_class=RawTextHelpFormatter)
+    parser.add_argument(
+        'url', type=str, help='url of the code')
+    parser.add_argument(
+        '-l', '--language',
+        choices=['cpp', 'java', 'py'],
+        default='cpp', help='default is cpp')
+    parser.add_argument(
+        '-d', '--dir',
+        default='',
+        help='if given then uses this dir and language flag will be ignored.')
+    return parser.parse_args()
 
+
+def main():
+    args = _get_args()
     cwd = os.getcwd()
-    url = sys.argv[1]
-    language = 'cpp' if len(sys.argv) == 2 else sys.argv[2]
+    url = args.url
 
     site = ff.factory.get(url)
     dir_name = site.dirname()
@@ -32,11 +49,10 @@ def main():
         _create_files(dir_name, idx, inp, out)
 
     # copying the content of sample dir
-    if language in ['cpp', 'java', 'py']:
+    sample_dir = args.dir
+    if not args.dir:
         base_dir = os.path.dirname(os.path.realpath(__file__))
-        sample_dir = os.path.join(base_dir, 'sample', language)
-    else:
-        sample_dir = language
+        sample_dir = os.path.join(base_dir, 'sample', args.language)
 
     if not os.path.isdir(sample_dir):
         print(sample_dir, 'not found')

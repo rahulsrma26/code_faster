@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 from .base_fetcher import BaseFetcher
 
 
+def clean_text(tag):
+    return tag.find("pre").prettify()[5:-6].replace("<br/>", "\n")
+
+
 class CodeForceFetcher(BaseFetcher):
 
     PATTERNS = {
@@ -21,7 +25,6 @@ class CodeForceFetcher(BaseFetcher):
                 level = match.group(2)
                 return 'CF{}-{}'.format(problem, level)
 
-
     def tests(self):
         if not self.text:
             return
@@ -31,9 +34,10 @@ class CodeForceFetcher(BaseFetcher):
         previous = None
         for div in soup.find_all('div', {'class': 'sample-test'}):
             # print('s', div.get_text())
-            inp = div.find("div", {"class": "input"}).find("pre")
-            out = div.find("div", {"class": "output"}).find("pre")
-            yield inp.get_text(), out.get_text()
+            inputs = div.find_all("div", {"class": "input"})
+            outputs = div.find_all("div", {"class": "output"})
+            for i, o in zip(inputs, outputs):
+                yield clean_text(i), clean_text(o)
             # dtype = div['class'][0]
             # text = div.find('pre').get_text()
             # if text[0] == '\n':

@@ -22,19 +22,20 @@ This package installs two commands:
 
     This will fetches the code from given url.
     ```sh
-    cfetch <code-url> [language|sample-dir]
+    usage: cfetch [-h] [-l {cpp,java,py}] [-d DIR] url
+    positional arguments:
+    url                   url of the code
+
+    optional arguments:
+    -h, --help                    show this help message and exit
+    -l, --language {cpp,java,py}  default is cpp
+    -d, --dir DIR             if given then uses this dir and language flag will be ignored.
     ```
-    Where language can be one of:
-
-    * cpp (default)
-    * java
-    * py
-
-    If sample-dir is provided instead of language then it'll copy the contents of your sample dir into the created one. Using this you can use your own template for any language whatsoever. However, runner will still work only on supported languages.
+    If dir is provided (language flag will be ignored) then it'll copy the contents of your sample dir into the created one. Using this you can use your own template for any language whatsoever. However, runner will still work only on supported languages.
 
     example:
     ```sh
-    cfetch http://codeforces.com/problemset/problem/1/A cpp
+    cfetch http://codeforces.com/problemset/problem/1/A
     ```
     This will create a folder named CF1-A in the current directory with sample test cases and main.cpp file.
 
@@ -59,7 +60,7 @@ This package installs two commands:
 First we will fetch a problem from [codeforces.com](http://codeforces.com/problemset/problem/1/A)
 
 ```sh
-> cfetch http://codeforces.com/problemset/problem/1/A cpp
+> cfetch http://codeforces.com/problemset/problem/1/A
 CF1-A created
 test_1 created
 main.cpp created

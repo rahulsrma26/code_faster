@@ -27,6 +27,11 @@ class CodeForceFetcher(BaseFetcher):
                 level = match.group(2)
                 return 'CF{}-{}'.format(problem, level)
 
+    def title(self):
+        soup = BeautifulSoup(self.text, 'html.parser')
+        tag = soup.find('div', {'class': 'problem-statement'}).find('div', {'class': 'title'})
+        return tag.get_text()
+
     def tests(self):
         if not self.text:
             return

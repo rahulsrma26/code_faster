@@ -23,3 +23,11 @@ class BaseFetcher(ABC):
     @abstractmethod
     def tests(self):
         pass
+
+
+    def title(self):
+        return ""
+
+
+    def statement(self):
+        return ""

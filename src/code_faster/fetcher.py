@@ -34,8 +34,8 @@ def main():
     cwd = os.getcwd()
     url = args.url
 
-    site = ff.factory.get(url)
-    dir_name = site.dirname()
+    page = ff.factory.get(url)
+    dir_name = page.dirname()
 
     # create directory
     if os.path.isdir(dir_name):
@@ -45,7 +45,7 @@ def main():
         os.mkdir(dir_name)
 
     # create test(s)
-    for idx, (inp, out) in enumerate(site.tests(), 1):
+    for idx, (inp, out) in enumerate(page.tests(), 1):
         _create_files(dir_name, idx, inp, out)
 
     # copying the content of sample dir
@@ -64,7 +64,7 @@ def main():
             dstpath = os.path.join(dir_name, filename)
             if not os.path.isfile(dstpath):
                 if 'main' in filename.lower():
-                    _create_copy(filepath, dstpath, url)
+                    _create_copy(filepath, dstpath, page)
                 else:
                     shutil.copyfile(filepath, dstpath)
                 print(filename, 'created')
@@ -82,11 +82,13 @@ def _create_files(base_dir, idx, inp, out):
     print(f'test_{idx} created')
 
 
-def _create_copy(src, dst, url):
+def _create_copy(src, dst, page):
     with open(src, 'r', encoding='utf-8') as in_file:
         text = in_file.read()
         text = text.replace('<<<date_now>>>', str(datetime.date(datetime.now())))
-        text = text.replace('<<<src_url>>>', url)
+        text = text.replace('<<<src_url>>>', page.url)
+        text = text.replace('<<<title>>>', page.title())
+        # ToDo: text = text.replace('<<<statement>>>', page.statement())
         with open(dst, 'w', encoding='utf-8') as out_file:
             out_file.write(text)
 
